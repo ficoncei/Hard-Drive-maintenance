@@ -7,7 +7,7 @@ samples=21600
 
 device = torch.device("cuda:0")
 
-#Multi Layer Perceptron definition
+#MLP definition
 
 class Net(nn.Module):
     def __init__(self):
@@ -27,7 +27,7 @@ model=  Net()
 #Function that loads data and uses it to train the network
 def trainNN():    
     print("Training ongoing...")
-    HWdata = pd.read_csv('2013-04-17.csv')
+    HWdata = pd.read_csv('trainingdataset.csv')
     HWdatanp=pd.DataFrame(HWdata).to_numpy()
 
     for sample in range(samples):
@@ -45,7 +45,7 @@ def trainNN():
         
 #Function that receives as user input an HD ID and outputs a failure probability
 def testNN(HD_ID,threshold):
-    HWdata2 = pd.read_csv('2013-04-19.csv')
+    HWdata2 = pd.read_csv('testdataset.csv')
     HWdatanp2=pd.DataFrame(HWdata2).to_numpy()
     
     inputLayer = torch.tensor([HWdatanp2[HD_ID]]).float()
